@@ -31,8 +31,6 @@
   "main": "leveldown.js",
   "dependencies": {
     "abstract-leveldown": "~2.6.1",
-    "bindings": "~1.2.1",
-    "fast-future": "~1.0.2",
     "nan": "~2.6.1",
     "prebuild-install": "^2.1.0"
   },
@@ -45,6 +43,7 @@
     "lexicographic-integer": "~1.1.0",
     "mkfiletree": "~1.0.1",
     "monotonic-timestamp": "~0.0.8",
+    "node-gyp": "^3.6.2",
     "node-uuid": "~1.4.3",
     "optimist": "~0.6.1",
     "prebuild": "^6.0.2",

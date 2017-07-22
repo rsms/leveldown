@@ -1,6 +1,6 @@
 const util             = require('util')
     , AbstractIterator = require('abstract-leveldown').AbstractIterator
-    , fastFuture       = require('fast-future')
+    , { scheduleNext } = require('./util')
 
 
 function Iterator (db, options) {
@@ -9,7 +9,6 @@ function Iterator (db, options) {
   this.binding    = db.binding.iterator(options)
   this.cache      = null
   this.finished   = false
-  this.fastFuture = fastFuture()
 }
 
 util.inherits(Iterator, AbstractIterator)
@@ -39,18 +38,19 @@ Iterator.prototype._next = function (callback) {
     key   = this.cache.pop()
     value = this.cache.pop()
 
-    this.fastFuture(function () {
+    scheduleNext(() => {
       callback(null, key, value)
     })
 
   } else if (this.finished) {
-    this.fastFuture(function () {
+    scheduleNext(() => {
       callback()
     })
   } else {
     this.binding.next(function (err, array, finished) {
-      if (err) return callback(err)
-
+      if (err) {
+        return callback(err)
+      }
       that.cache    = array
       that.finished = finished
       that._next(callback)
