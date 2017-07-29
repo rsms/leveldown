@@ -38,10 +38,10 @@ type ErrCallback = (error: any) => void;
 type ErrNumberCallback = (error: any, value: number) => void;
 type ErrBufferCallback = (error: any, value: Buffer) => void;
 type ErrStringCallback = (error: any, value: string) => void;
-type KeyAsStringCallback = (error: any, key: string, value: Buffer) => void;
-type ValueAsStringCallback = (error: any, key: Buffer, value: string) => void;
-type KeyAndValueAsStringCallback = (error: any, key: string, value: string) => void;
-type KeyAndValueAsBufferCallback = (error: any, key: Buffer, value: Buffer) => void;
+type KeyAsStringCallback = (error: any, key?: string, value?: Buffer) => void;
+type ValueAsStringCallback = (error: any, key?: Buffer, value?: string) => void;
+type KeyAndValueAsStringCallback = (error: any, key?: string, value?: string) => void;
+type KeyAndValueAsBufferCallback = (error: any, key?: Buffer, value?: Buffer) => void;
 
 interface PutBatch {
     type: "put";
